@@ -1,13 +1,133 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+}
+
+html {
+  font-size: 10px;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.App {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+h2 {
+  text-align: center;
+  font-size: 3rem;
+}
+
+main {
+  width: 120rem;
+  height: 80rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
+
+#search-options {
+  width: 100%;
+  height: 8%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#dropdown,
+#search-bar,
+#items-per-page {
+  display: inline-block;
+  width: 22%;
+  height: 3rem;
+  font-size: 1.7rem;
+  padding: 0 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: none;
+  outline: none;
+  color: #000;
+}
+
+#show-favourites {
+  width: 22%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.7rem;
+}
+
+#show-favourites input {
+  height: 22px;
+  width: 22px;
+  margin-right: 5px;
+}
+
+#table-container {
+  width: 100%;
+  height: 84%;
+  overflow: auto;
+  font-size: 1.7rem;
+}
+
+#pagination-container {
+  width: 100%;
+}
+
+.favourite-checkbox {
+  width: 22px;
+  height: 22px;
+}
+
+.pagination {
+  display: flex;
+  width: 60%;
+  margin: 1rem auto;
+  justify-content: space-evenly;
+  list-style: none;
+  font-size: 2rem;
+}
+
+.pagination li a {
+  text-decoration: none;
+  color: #000;
+}
+
+.active a {
+  color: blue !important;
+}
+
+th {
+  border: 1px solid black;
+  background-color: lightblue;
+  padding: 1rem;
+}
+
+td {
+  border: 1px solid black;
+  text-align: center;
+  padding: 1rem;
 }
