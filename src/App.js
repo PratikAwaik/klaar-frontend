@@ -107,7 +107,12 @@ function App() {
   return (
     <div className="App">
       <main>
-        <h1 style={{ textAlign: "center", fontSize: "4rem", margin: "3rem 0" }}>
+        <h1
+          style={{
+            textAlign: "center",
+            fontSize: "4rem",
+            margin: "3rem 0 1.5rem 0",
+          }}>
           Bank Branches
         </h1>
         <p>Found {searchResults.length} results</p>
