@@ -131,3 +131,8 @@ td {
   text-align: center;
   padding: 1rem;
 }
+
+p {
+  font-size: 1.7rem;
+  color: blue;
+}
