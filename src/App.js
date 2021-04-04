@@ -110,6 +110,7 @@ function App() {
         <h1 style={{ textAlign: "center", fontSize: "4rem", margin: "3rem 0" }}>
           Bank Branches
         </h1>
+        <p>Found {searchResults.length} results</p>
         <div id="search-options">
           <select
             name="city"
