@@ -11,9 +11,11 @@ function App() {
   const [activePageNumber, setActivePageNumber] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
   const [currentResults, setCurrentResults] = useState([]);
+  const [viewFavourite, setViewFavourite] = useState(false);
 
   useEffect(() => {
     (async () => {
+      // cache the api call
       if (localStorage.getItem("bankData")) {
         const data = JSON.parse(localStorage.getItem("bankData"));
         setBankData(data);
@@ -59,31 +61,41 @@ function App() {
     setCurrentResults(newBankData.slice(0, itemsPerPage));
   };
 
-  const addtoFavourites = (index, e) => {
+  const setFavourites = () => {
+    const favourites = searchResults.filter((bank) => bank.favourite);
+    setSearchResults(favourites);
+    setCurrentResults(favourites.slice(0, itemsPerPage));
+  };
+
+  const alterFavourites = (index, e) => {
     const { checked } = e.target;
     const newBankData = [...bankData];
     newBankData[index].favourite = checked;
     localStorage.setItem("bankData", JSON.stringify(newBankData));
     setBankData(newBankData);
-    setSearchResults(newBankData);
-    setCurrentResults(
-      newBankData.slice(
-        activePageNumber * itemsPerPage - itemsPerPage,
-        activePageNumber * itemsPerPage,
-      ),
-    );
+
+    if (viewFavourite) {
+      setFavourites();
+    } else {
+      setSearchResults(newBankData);
+      setCurrentResults(
+        newBankData.slice(
+          activePageNumber * itemsPerPage - itemsPerPage,
+          activePageNumber * itemsPerPage,
+        ),
+      );
+    }
   };
 
   const showFavourites = (e) => {
     const { checked } = e.target;
     if (checked) {
-      const favourites = searchResults.filter((bank) => bank.favourite);
-      setSearchResults(favourites);
-      setCurrentResults(favourites.slice(0, itemsPerPage));
+      setFavourites();
     } else {
       setSearchResults(bankData);
       setCurrentResults(bankData.slice(0, itemsPerPage));
     }
+    setViewFavourite(checked);
   };
 
   const handleItemsPerPageChange = (e) => {
@@ -183,15 +195,10 @@ function App() {
                                 type="checkbox"
                                 style={{ cursor: "pointer" }}
                                 checked={
-                                  searchResults[getIndex(searchResults, data)][
-                                    key
-                                  ]
+                                  bankData[getIndex(bankData, data)][key]
                                 }
                                 onChange={(e) =>
-                                  addtoFavourites(
-                                    getIndex(searchResults, data),
-                                    e,
-                                  )
+                                  alterFavourites(getIndex(bankData, data), e)
                                 }
                               />
                             </td>
