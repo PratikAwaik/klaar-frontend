@@ -20,7 +20,7 @@ function App() {
         const data = JSON.parse(localStorage.getItem("bankData"));
         setBankData(data);
         setSearchResults(data);
-        setCurrentResults(data.slice(0, itemsPerPage));
+        setCurrentResults(data.slice(0, 10));
       } else {
         const response = await fetch(
           "https://vast-shore-74260.herokuapp.com/banks?city=MUMBAI",
@@ -30,7 +30,7 @@ function App() {
         localStorage.setItem("bankData", JSON.stringify(data));
         setBankData(data);
         setSearchResults(data);
-        setCurrentResults(data.slice(0, itemsPerPage));
+        setCurrentResults(data.slice(0, 10));
       }
       setLoading(false);
     })();
